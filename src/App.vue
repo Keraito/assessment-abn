@@ -1,6 +1,14 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
-import HelloWorld from './components/HelloWorld.vue';
+import { showsStore, type Show } from './utils/shows.store';
+
+onMounted(() => {
+  fetch("https://api.tvmaze.com/shows").then(response => response.json()).then((data: Show[]) => {
+    showsStore.shows = data
+    showsStore.genres = Array.from(new Set(data.map(show => show.genres).flat()));
+  })
+});
 </script>
 
 <template>
@@ -61,7 +69,9 @@ nav a:first-of-type {
   }
 
   .content {
-    margin-left: calc(var(--section-gap) / 2);
+    padding: 2rem 0 2rem calc(var(--section-gap) / 2);
+    height: 100vh;
+    overflow-y: scroll
   }
 }
 </style>
