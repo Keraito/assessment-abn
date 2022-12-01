@@ -16,7 +16,7 @@ onMounted(() => {
   <header>
     <nav>
       <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/about">Search</RouterLink>
+      <RouterLink to="/search">Search</RouterLink>
     </nav>
   </header>
 
