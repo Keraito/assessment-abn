@@ -13,12 +13,13 @@ const props = defineProps<{
   </li>
 </template>
 
-<style>
+<style scoped>
 .container {
   transition: all 0.3s ease-out;
   box-shadow: rgba(242, 248, 249, 0.4) 0px 1px 8px;
   top: 0px;
   position: relative;
+  cursor: pointer;
 }
 
 .container:hover {

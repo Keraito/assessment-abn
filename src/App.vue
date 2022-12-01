@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
+import { fetchShows } from './utils/api';
 import { showsStore, type Show } from './utils/shows.store';
 
 onMounted(() => {
-  fetch("https://api.tvmaze.com/shows").then(response => response.json()).then((data: Show[]) => {
+  fetchShows().then((data: Show[]) => {
     showsStore.shows = data
     showsStore.genres = Array.from(new Set(data.map(show => show.genres).flat()));
   })
