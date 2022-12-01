@@ -26,7 +26,7 @@ const selectedShow = computed<Show | null>(() => showsStore.shows.find(show => s
       <h2>{{ genre }}</h2>
       <ul>
         <ShowCard v-for="show in showsStore.shows.filter(show => show.genres.includes(genre))"
-          :coverImageSrc="show.image.medium" :title="show.name" @click="selectShow(show.id)" />
+          :coverImageSrc="show.image?.medium" :title="show.name" @click="selectShow(show.id)" />
       </ul>
     </div>
     <!-- <ul>

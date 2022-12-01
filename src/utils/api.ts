@@ -10,9 +10,6 @@ type ShowImage = {
     original: {
       url: string;
     };
-    medium: {
-      url: string;
-    };
   };
 };
 
@@ -21,6 +18,16 @@ export const fetchShowCover = (showId: number): Promise<string | undefined> =>
     .then((response) => response.json())
     .then(
       (images: ShowImage[]) =>
-        images.find((image) => image.type === 'background')?.resolutions.original
-          .url
+        images.find((image) => image.type === 'background')?.resolutions
+          .original.url
     );
+
+type SearchResult = {
+  score: number;
+  show: Show;
+};
+
+export const searchShow = (query: string): Promise<SearchResult[]> =>
+  fetch(`https://api.tvmaze.com/search/shows?q=${query}`).then((response) =>
+    response.json()
+  );
