@@ -9,7 +9,7 @@ import ShowCard from './ShowCard.vue';
       <h2>{{ genre }}</h2>
       <ul>
         <ShowCard v-for="show in showsStore.shows.filter(show => show.genres.includes(genre))"
-          :coverImageSrc="show.image?.medium" />
+          :coverImageSrc="show.image.medium" :title="show.name" />
       </ul>
     </div>
     <!-- <ul>

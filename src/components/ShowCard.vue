@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{
   coverImageSrc: string
-  genres: string[]
+  title: string;
 }>()
 </script>
 
@@ -9,6 +9,7 @@ const props = defineProps<{
 <template>
   <li class="container">
     <img :src="coverImageSrc" />
+    <h3>{{ title }}</h3>
   </li>
 </template>
 
@@ -17,6 +18,7 @@ const props = defineProps<{
   transition: all 0.3s ease-out;
   box-shadow: rgba(242, 248, 249, 0.4) 0px 1px 8px;
   top: 0px;
+  position: relative;
 }
 
 .container:hover {
@@ -33,5 +35,23 @@ img {
 
 img {
   object-fit: cover;
+}
+
+h3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  padding: 0.25rem 0.5rem;
+
+  background: linear-gradient(0deg, rgba(2, 0, 36, 1) 30%, rgba(255, 255, 255, 0) 100%);
 }
 </style>
