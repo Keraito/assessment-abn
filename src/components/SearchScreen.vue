@@ -21,7 +21,7 @@ watch(query, debounce(async (newQuery, oldQuery) => {
       <input type="text" placeholder="Search..." v-model="query" />
     </div>
     <ul>
-      <ShowCard v-for="show in shows" :coverImageSrc="show.image?.medium" :title="show.name" />
+      <ShowCard v-for="show in shows" :coverImageSrc="show.image?.medium" :title="show.name" :show="show" />
     </ul>
   </section>
 </template>

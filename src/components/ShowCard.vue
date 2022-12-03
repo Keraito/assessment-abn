@@ -1,16 +1,37 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+import Modal from './Modal.vue';
+import ShowDetails from './ShowDetails.vue';
+import type { Show } from '../utils/shows.store';
+
 const props = defineProps<{
   coverImageSrc: string
   title: string;
+  show: Show;
 }>()
+
+const shouldShowDetails = ref(false);
+
+function openShowDetails() {
+  shouldShowDetails.value = true;
+}
+
+function closeShowDetails() {
+  shouldShowDetails.value = false;
+}
 </script>
 
 
 <template>
-  <li class="container">
+  <li class="container" @click="openShowDetails">
     <img :src="coverImageSrc" />
     <h3>{{ title }}</h3>
   </li>
+  <Modal :isOpen="shouldShowDetails">
+    <template #content>
+      <ShowDetails v-if="shouldShowDetails" v-bind="show" @close-details="closeShowDetails" />
+    </template>
+  </Modal>
 </template>
 
 <style scoped>

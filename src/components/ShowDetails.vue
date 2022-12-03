@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { fetchShowCover } from '../utils/api';
-import { onMounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 
 const props = defineProps<{
   id: number;
@@ -15,15 +15,29 @@ const props = defineProps<{
   };
   summary: string;
 }>();
+const emit = defineEmits<{ (e: 'closeDetails'): void }>();
+
 const imageCoverSrc = ref<string | undefined>(undefined);
+const detailsRef = ref<HTMLElement | null>(null);
+
+function clickHandler(ev: MouseEvent) {
+  if (detailsRef.value && !detailsRef.value.contains(ev.target as HTMLElement)) {
+    emit('closeDetails')
+  }
+}
 
 onMounted(() => {
+  window.addEventListener('mousedown', clickHandler);
   fetchShowCover(props.id).then(url => imageCoverSrc.value = url)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('mousedown', clickHandler);
 })
 </script>
 
 <template>
-  <section class="container">
+  <section class="show-details-container" ref="detailsRef">
     <button class="back-button" @click="$emit('closeDetails')">⬅ Back</button>
     <div class="cover-image">
       <img :src="imageCoverSrc" />
@@ -54,9 +68,10 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.container {
+.show-details-container {
   margin: 0 auto;
-  width: 600px;
+  width: 660px;
+  padding: 30px;
 }
 
 .cover-image {
