@@ -5,7 +5,7 @@ import ShowCard from './ShowCard.vue';
 
 <template>
   <div class="home">
-    <div class="show-list" v-for="genre in showsStore.genres.filter((_, index) => index % 8 === 0)">
+    <div class="show-list" v-for="genre in showsStore.genres.filter((_, index) => index % 4 === 0)">
       <h2>{{ genre }}</h2>
       <ul>
         <ShowCard v-for="show in showsStore.shows.filter(show => show.genres.includes(genre))"
@@ -15,25 +15,30 @@ import ShowCard from './ShowCard.vue';
   </div>
 </template>
 
-<style>
+<style scoped>
+ul {
+  list-style: none;
+  padding: 8px 0;
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding-right: 0px;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
 @media (min-width: 1024px) {
-  .home {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .show-list {
+    margin-top: 12px;
   }
 
   ul {
-    list-style: none;
-    padding: 8px 0;
-    display: flex;
-    gap: 24px;
     padding-right: calc(24px + 20px);
-    overflow-x: auto;
-  }
-
-  .show-list {
-    margin-top: 12px;
   }
 }
 </style>

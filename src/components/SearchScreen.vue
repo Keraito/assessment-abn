@@ -27,6 +27,26 @@ watch(query, debounce(async (newQuery, oldQuery) => {
 </template>
 
 <style scoped>
+ul {
+  list-style: none;
+  padding: 8px 0;
+  gap: 24px;
+
+  margin-top: 24px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 150px);
+
+  justify-content: center;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
 .search-wrapper {
   background-color: var(--main-color);
   height: 50px;
@@ -47,13 +67,5 @@ watch(query, debounce(async (newQuery, oldQuery) => {
 .search-wrapper,
 .search-wrapper>input[type=text] {
   border-radius: 5px;
-}
-
-ul {
-  margin-top: 24px;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 150px);
-  grid-gap: 1rem;
 }
 </style>

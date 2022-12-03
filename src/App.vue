@@ -30,16 +30,23 @@ header {
   line-height: 1.5;
   max-height: 100vh;
   padding: 0 20px;
-  border-right: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
+
+  grid-area: nav;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 nav {
   width: 100%;
-  font-size: 12px;
+  font-size: 1rem;
   text-align: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 
 nav a.router-link-exact-active {
@@ -53,25 +60,38 @@ nav a.router-link-exact-active:hover {
 nav a {
   display: inline-block;
   padding: 1rem 1rem;
-  border-top: 1px solid var(--color-border);
 }
 
 nav a:first-of-type {
   border: 0;
 }
 
+.content {
+  grid-area: content;
+  max-width: 100vw;
+  height: calc(100vh - 50px);
+  padding: 2rem;
+  overflow: scroll;
+}
+
 @media (min-width: 1024px) {
   header {
-    display: flex;
     place-items: center;
+    border-right: 1px solid var(--color-border);
   }
 
   nav {
     text-align: left;
-    font-size: 1rem;
+    flex-direction: column;
+  }
+
+  nav a {
+    border-top: 1px solid var(--color-border);
   }
 
   .content {
+    max-width: auto;
+    overflow: auto;
     padding: 2rem 0;
     height: 100vh;
     overflow-y: scroll
