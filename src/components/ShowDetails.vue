@@ -14,7 +14,6 @@ const props = defineProps<{
     orginal: string;
   };
   summary: string;
-  onClose: () => void;
 }>();
 const imageCoverSrc = ref<string | undefined>(undefined);
 
