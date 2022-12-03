@@ -11,7 +11,6 @@ const shows = ref<Show[]>([]);
 watch(query, debounce(async (newQuery, oldQuery) => {
   if (oldQuery !== newQuery) {
     shows.value = (await searchShow(newQuery)).map(searchResult => searchResult.show);
-    console.log(shows.value.map(show => show.image));
   }
 }, 300))
 </script>
