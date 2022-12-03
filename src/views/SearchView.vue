@@ -7,3 +7,9 @@ import SearchScreen from '@/components/SearchScreen.vue';
     <SearchScreen />
   </main>
 </template>
+
+<style scoped>
+main {
+  padding: 0 calc(var(--section-gap) / 2)
+}
+</style>

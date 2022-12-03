@@ -29,6 +29,8 @@ onMounted(() => {
 header {
   line-height: 1.5;
   max-height: 100vh;
+  padding: 0 20px;
+  border-right: 1px solid var(--color-border);
 }
 
 nav {
@@ -70,7 +72,7 @@ nav a:first-of-type {
   }
 
   .content {
-    padding: 2rem 0 2rem calc(var(--section-gap) / 2);
+    padding: 2rem 0;
     height: 100vh;
     overflow-y: scroll
   }
