@@ -40,7 +40,8 @@ onUnmounted(() => {
   <section class="show-details-container" ref="detailsRef">
     <button class="back-button" @click="$emit('closeDetails')">⬅ Back</button>
     <div class="cover-image">
-      <img :src="imageCoverSrc" />
+      <img v-if='imageCoverSrc' :src="imageCoverSrc" />
+      <div v-else class="image-placeholder" />
     </div>
     <h2>
       {{ name }}
@@ -49,7 +50,7 @@ onUnmounted(() => {
     <div class="info-section">
       <div>
         <span>⭐️</span>
-        <span class="info-value">{{ rating.average }} / 10</span>
+        <span class="info-value">{{ rating.average ?? '??' }} / 10</span>
       </div>
       <div>
         <span>🌍</span>
@@ -61,7 +62,7 @@ onUnmounted(() => {
       </div>
       <div>
         <span>📖</span>
-        <span class="info-value">{{ genres.join(", ") }}</span>
+        <span class="info-value">{{ genres.length > 0 ? genres.join(", ") : "Unspecified" }}</span>
       </div>
     </div>
   </section>
@@ -80,12 +81,17 @@ onUnmounted(() => {
   margin-top: 24px;
 }
 
-img {
+img,
+.image-placeholder {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 5px;
   border: black solid 1px;
+}
+
+.image-placeholder {
+  background-color: lightgray;
 }
 
 h2 {
