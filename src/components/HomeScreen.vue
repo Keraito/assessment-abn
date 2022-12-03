@@ -8,7 +8,8 @@ import ShowCard from './ShowCard.vue';
     <div class="show-list" v-for="genre in showsStore.genres.filter((_, index) => index % 4 === 0)">
       <h2>{{ genre }}</h2>
       <ul>
-        <ShowCard v-for="show in showsStore.shows.filter(show => show.genres.includes(genre))"
+        <ShowCard
+          v-for="show in showsStore.shows.filter(show => show.genres.includes(genre)).sort((a, b) => b.rating.average - a.rating.average)"
           :coverImageSrc="show.image?.medium" :title="show.name" :show="show" />
       </ul>
     </div>
