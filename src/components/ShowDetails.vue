@@ -26,13 +26,21 @@ function clickHandler(ev: MouseEvent) {
   }
 }
 
+function keyboardHandler(ev: KeyboardEvent) {
+  if (ev.key === 'Escape') {
+    emit('closeDetails');
+  }
+}
+
 onMounted(() => {
   window.addEventListener('mousedown', clickHandler);
+  window.addEventListener('keydown', keyboardHandler);
   fetchShowCover(props.id).then(url => imageCoverSrc.value = url)
 })
 
 onUnmounted(() => {
   window.removeEventListener('mousedown', clickHandler);
+  window.removeEventListener('keydown', keyboardHandler);
 })
 </script>
 

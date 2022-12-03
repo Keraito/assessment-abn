@@ -19,11 +19,18 @@ function openShowDetails() {
 function closeShowDetails() {
   shouldShowDetails.value = false;
 }
+
+function cardKeyboardHandler(ev: KeyboardEvent) {
+  if (ev.key === ' ' || ev.key === 'Enter') {
+    ev.preventDefault();
+    openShowDetails();
+  }
+}
 </script>
 
 
 <template>
-  <li class="container" @click="openShowDetails">
+  <li class="container" @click="openShowDetails" @keydown="cardKeyboardHandler" tabindex="0">
     <img :src="coverImageSrc" />
     <h3>{{ title }}</h3>
   </li>
@@ -43,7 +50,8 @@ function closeShowDetails() {
   cursor: pointer;
 }
 
-.container:hover {
+.container:hover,
+.container:focus {
   box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
   top: -5px;
 }
