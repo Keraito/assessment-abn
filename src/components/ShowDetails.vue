@@ -11,7 +11,7 @@ const props = defineProps<{
   premiered: string;
   image: {
     medium: string;
-    orginal: string;
+    original: string;
   };
   summary: string;
 }>();

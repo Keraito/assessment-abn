@@ -9,7 +9,7 @@ export type Show = {
   premiered: string;
   image: {
     medium: string;
-    orginal: string;
+    original: string;
   };
   summary: string;
 };

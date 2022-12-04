@@ -5,7 +5,7 @@ import ShowDetails from './ShowDetails.vue';
 import type { Show } from '../utils/shows.store';
 
 const props = defineProps<{
-  coverImageSrc: string
+  coverImageSrc: string | null;
   title: string;
   show: Show;
 }>()
@@ -31,8 +31,8 @@ function cardKeyboardHandler(ev: KeyboardEvent) {
 
 <template>
   <li class="container" @click="openShowDetails" @keydown="cardKeyboardHandler" tabindex="0">
-    <img v-if='coverImageSrc' :src="coverImageSrc" />
-    <div v-else class="image-placeholder" />
+    <img v-if='coverImageSrc && coverImageSrc.length > 0' :src="coverImageSrc" :alt="`Cover image of ${title}`" />
+    <div v-else class="image-placeholder" data-testid="cover-image-placeholder" />
     <h3>{{ title }}</h3>
   </li>
   <Modal :isOpen="shouldShowDetails">
@@ -68,6 +68,7 @@ img,
 .image-placeholder {
   background-color: var(--secondary-color);
 }
+
 img {
   object-fit: cover;
 }
