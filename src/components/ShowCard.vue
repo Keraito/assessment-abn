@@ -31,7 +31,8 @@ function cardKeyboardHandler(ev: KeyboardEvent) {
 
 <template>
   <li class="container" @click="openShowDetails" @keydown="cardKeyboardHandler" tabindex="0">
-    <img :src="coverImageSrc" />
+    <img v-if='coverImageSrc' :src="coverImageSrc" />
+    <div v-else class="image-placeholder" />
     <h3>{{ title }}</h3>
   </li>
   <Modal :isOpen="shouldShowDetails">
@@ -57,12 +58,16 @@ function cardKeyboardHandler(ev: KeyboardEvent) {
 }
 
 li,
-img {
+img,
+.image-placeholder {
   width: 150px;
   height: 225px;
   border-radius: 5px;
 }
 
+.image-placeholder {
+  background-color: var(--secondary-color);
+}
 img {
   object-fit: cover;
 }

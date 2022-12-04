@@ -99,7 +99,7 @@ img,
 }
 
 .image-placeholder {
-  background-color: lightgray;
+  background-color: var(--secondary-color);
 }
 
 h2 {

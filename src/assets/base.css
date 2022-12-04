@@ -36,9 +36,11 @@
   --color-text: var(--vt-c-text-light-1);
 
   --section-gap: 160px;
+
+  --secondary-color: var(--vt-c-divider-light-2);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--vt-c-black);
     --color-background-soft: var(--vt-c-black-soft);
@@ -50,7 +52,7 @@
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);
   }
-}
+} */
 
 *,
 *::before,

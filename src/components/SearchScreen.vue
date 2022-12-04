@@ -4,6 +4,7 @@ import debounce from 'lodash/debounce';
 import type { Show } from '../utils/shows.store';
 import { searchShow } from '../utils/api';
 import ShowCard from './ShowCard.vue';
+import IconSearch from './icons/IconSearch.vue';
 
 const query = ref(undefined);
 const shows = ref<Show[]>([]);
@@ -19,6 +20,7 @@ watch(query, debounce(async (newQuery, oldQuery) => {
   <section>
     <div class="search-wrapper">
       <input type="text" placeholder="Search..." v-model="query" />
+      <IconSearch class="search-icon" />
     </div>
     <ul>
       <ShowCard v-for="show in shows" :coverImageSrc="show.image?.medium" :title="show.name" :show="show" />
@@ -48,7 +50,7 @@ ul {
 }
 
 .search-wrapper {
-  background-color: var(--main-color);
+  border: var(--main-color) 1px solid;
   height: 50px;
   padding: 5px 20px;
   display: flex;
@@ -57,15 +59,23 @@ ul {
 }
 
 .search-wrapper>input[type=text] {
-  border: var(--main-color) 1px solid;
+  border: none;
   font-size: 18px;
   padding: 5px 0 5px 10px;
   width: 100%;
+}
+
+.search-wrapper>input[type=text],
+.search-wrapper>input[type=text]::placeholder {
   color: var(--main-color)
 }
 
-.search-wrapper,
-.search-wrapper>input[type=text] {
-  border-radius: 5px;
+.search-wrapper {
+  border-radius: 40px;
+}
+
+.search-icon {
+  height: 100%;
+  color: var(--main-color);
 }
 </style>

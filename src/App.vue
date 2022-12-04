@@ -7,7 +7,7 @@ import { showsStore, type Show } from './utils/shows.store';
 onMounted(() => {
   fetchShows().then((data: Show[]) => {
     showsStore.shows = data
-    showsStore.genres = Array.from(new Set(data.map(show => show.genres).flat()));
+    showsStore.genres = Array.from(new Set<string>(data.map(show => show.genres).flat())).sort();
   })
 });
 </script>
@@ -69,7 +69,7 @@ nav a:first-of-type {
 .content {
   grid-area: content;
   max-width: 100vw;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 57px);
   padding: 2rem;
   overflow: scroll;
 }
@@ -77,6 +77,7 @@ nav a:first-of-type {
 @media (min-width: 1024px) {
   header {
     place-items: center;
+    border-top: none;
     border-right: 1px solid var(--color-border);
   }
 
@@ -90,7 +91,7 @@ nav a:first-of-type {
   }
 
   .content {
-    max-width: auto;
+    max-width: none;
     overflow: auto;
     padding: 2rem 0;
     height: 100vh;
